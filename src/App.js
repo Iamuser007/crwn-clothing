@@ -16,8 +16,10 @@ class App extends Component {
     };
   }
 
+  unsubscribeFromAuth = null;
+
   componentDidMount() {
-    auth.onAuthStateChanged((user) => {
+    this.unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
       this.setState({
         currentUser: user,
       });
@@ -26,11 +28,16 @@ class App extends Component {
     });
   }
 
+  // * closes the connection when not in use to avoid memory leaks
+  componentWillUnmount() {
+    this.unsubscribeFromAuth();
+  }
+
   render() {
     return (
       <div>
         {/* the header is placed outside the routes or switch so that by so doing, the header is always constant */}
-        <Header />
+        <Header currentUser={this.state.currentUser} />
         <Routes>
           <Route exact path="/" Component={HomePage} />{" "}
           {/** We only get access to the history properties from the first component that gets passed into our routes, so in the case only homepage right now has access to those properties*/}
