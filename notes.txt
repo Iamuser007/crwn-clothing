@@ -1,0 +1,4 @@
+checkout 'react-router-dom' docs
+-> a higher order component takes a component, performs some specified operations on that component and returns a new modified component
+-> incase you have error routing from one page not the homepage to another page then refer back to section 5 and try to get the address of the current page then use that address as a prerequisite for navigating to any other page
+-> A presentational component is a functional component with no state
