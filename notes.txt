@@ -4,5 +4,31 @@ checkout 'react-router-dom' docs
 -> A presentational component is a functional component with no state
 -> crud operations can be performed with the documentReference while the snapShot simply represents the data
 -> a document snapShot is gotten from the document reference object and also gets the properties of that document when we use the .data() method
+
+
+-> The 3 principles of redux:
+    -> single source of truth
+    -> state is read only
+    -> changes using pure functions
+
+
+-> Redux flow:
+    -> Action: such click on a button by the user or a drop down menu etc
+    -> Root reducer: action goes through this after the event has occurred and a reducer is simply a pure function that receives an input(action) and creates an output(Store)
+    -> Store: its a state created by the root reducer and as soon as it updates the changes, react makes those changes to the DOM
+
+    Redux uses an architectural pattern known as the flux pattern:
+    Action -> Dispatcher -> Store -> View
+
+before the flux pattern, the MVC was the architectural design in use
+
+-> root-reducer: represents all the states in the application
+-> user-reducer: will store the state of the current user
+.
+.
+.
+.
 topics to check on:
 document reference and collection reference in firebase
+prop drilling
+redux
