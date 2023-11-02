@@ -3,3 +3,6 @@ checkout 'react-router-dom' docs
 -> incase you have error routing from one page not the homepage to another page then refer back to section 5 and try to get the address of the current page then use that address as a prerequisite for navigating to any other page
 -> A presentational component is a functional component with no state
 -> crud operations can be performed with the documentReference while the snapShot simply represents the data
+-> a document snapShot is gotten from the document reference object and also gets the properties of that document when we use the .data() method
+topics to check on:
+document reference and collection reference in firebase

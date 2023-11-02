@@ -19,10 +19,24 @@ class App extends Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(async (user) => {
-      createUserProfileDocument(user);
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
+      // * so basically when a user signs in, we check if that user already exists and if not, we create a new user and return the user id otherwise if the user already exists we return the user id regardless when the user signs out -- we set the current user to null.
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
 
-      console.log(user);
+        userRef.onSnapshot((snapShot) => {
+          this.setState({
+            currentUser: {
+              id: snapShot.id,
+              ...snapShot.data(),
+            },
+          });
+        });
+      } else {
+        this.setState({
+          currentUser: userAuth,
+        });
+      }
     });
   }
 

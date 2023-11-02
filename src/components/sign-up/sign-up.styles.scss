@@ -1,0 +1,10 @@
+.sign-up {
+  display: flex;
+  flex-direction: column;
+  width: 380px;
+
+  .title {
+    /* the first parameter is for top and bottom and the second parameter is for left and right  */
+    margin: 10px 0;
+  }
+}
