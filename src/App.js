@@ -8,10 +8,11 @@ import SignInAndSignUpPage from "./components/pages/sign-in-and-sign-up/sign-in-
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 import { connect } from "react-redux";
 import { setCurrentUser } from "./redux/user.action";
+import { Navigate } from "react-router-dom";
 
 class App extends Component {
   // ---------------------
-  // NOTE // ! This constructor is deprecated as we are now using redux instead for this action
+  // NOTE // ! This constructor is deprecated as we are now using redux instead for this action but i just left it here for reference
   // constructor() {
   //   super();
 
@@ -48,6 +49,7 @@ class App extends Component {
   }
 
   render() {
+    const check = this.props.currentUser ? HomePage : SignInAndSignUpPage;
     return (
       <div>
         {/* the header is placed outside the routes or switch so that by so doing, the header is always constant */}
@@ -56,7 +58,7 @@ class App extends Component {
           <Route exact path="/" Component={HomePage} />{" "}
           {/** We only get access to the history properties from the first component that gets passed into our routes, so in the case only homepage right now has access to those properties*/}
           <Route exact path="/shop" Component={ShopPage} />
-          <Route exact path="/signIn" Component={SignInAndSignUpPage} />
+          <Route exact path="/signin" Component={check} />
         </Routes>
       </div>
     );
@@ -65,10 +67,15 @@ class App extends Component {
 
 // * we will be using the second argument here because the app.js doesn't do anything with the currentUser in this component but just passes it into the header
 
+// * destructuring the user reducer from the state
+const mapStateToProps = ({ user }) => ({
+  currentUser: user.currentUser,
+});
+
 const mapDispatchToProps = (dispatch) => ({
   // * dispatch takes the object you pass into it and passes it as an action to every reducer
   // *  invoking 'setCurrentUser' with the user that will then be used as the payload
   setCurrentUser: (user) => dispatch(setCurrentUser(user)),
 });
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
