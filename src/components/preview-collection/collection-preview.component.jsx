@@ -10,8 +10,8 @@ const CollectionPreview = ({ title, items }) => (
       {/* this '(item, idx) => idx < 4' means that only four will be rendered at a time */}
       {items
         .filter((item, idx) => idx < 4)
-        .map(({ id, ...otherItemProps }) => (
-          <CollectionItem key={id} {...otherItemProps} />
+        .map((item) => (
+          <CollectionItem key={item.id} item={item} />
         ))}
     </div>
   </div>

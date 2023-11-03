@@ -9,7 +9,7 @@ import CartDropdown from "../cart-dropdown/cart-dropdown.component";
 // NOTE // * one connect is caps 'Connect' and the second is lower-case 'connect' so you want to use the lower case in this context
 import { connect } from "react-redux"; //todo Refer to the notes.txt
 
-const Header = ({ currentUser }) => (
+const Header = ({ currentUser, hidden }) => (
   <div className="header">
     <Link className="logo-container" to="/">
       <Logo className="logo" />
@@ -32,7 +32,7 @@ const Header = ({ currentUser }) => (
       )}
       <CartIcon />
     </div>
-    <CartDropdown />
+    {hidden ? null : <CartDropdown />}
   </div>
 );
 
@@ -42,9 +42,10 @@ const Header = ({ currentUser }) => (
 
 // * the name can be anything but this name used is common_practice in the redux codebase
 // * the state in the function is the top level root_reducer
-const mapStateToProps = (state) => ({
+const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({
   // * from root reducer -> get the user value (from root-reducer.js) -> then get the currentUser(from user.reducer.js)
-  currentUser: state.user.currentUser,
+  currentUser,
+  hidden,
 });
 
 export default connect(mapStateToProps)(Header);
