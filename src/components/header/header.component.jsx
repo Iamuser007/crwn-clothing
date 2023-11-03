@@ -3,6 +3,9 @@ import "./header.styles.scss";
 import { Link } from "react-router-dom";
 import { ReactComponent as Logo } from "../../assets/084 crown.svg";
 import { auth } from "../../firebase/firebase.utils";
+import CartIcon from "../cart-icon/cart-icon.component";
+import CartDropdown from "../cart-dropdown/cart-dropdown.component";
+
 // NOTE // * one connect is caps 'Connect' and the second is lower-case 'connect' so you want to use the lower case in this context
 import { connect } from "react-redux"; //todo Refer to the notes.txt
 
@@ -27,7 +30,9 @@ const Header = ({ currentUser }) => (
           Sign In
         </Link>
       )}
+      <CartIcon />
     </div>
+    <CartDropdown />
   </div>
 );
 
