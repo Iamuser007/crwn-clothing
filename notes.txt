@@ -26,6 +26,13 @@ before the flux pattern, the MVC was the architectural design in use
 -> user-reducer: will store the state of the current user
 .
 .
+-> before the reducer, the header component was getting current user from app.js but now, we want the header to get the current user from the reducer
+.
+.
+.
+-> connect: it is a higher level component that grants access to redux
+.
+.
 .
 .
 topics to check on:
