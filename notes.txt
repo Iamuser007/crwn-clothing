@@ -33,6 +33,12 @@ before the flux pattern, the MVC was the architectural design in use
 -> connect: it is a higher level component that grants access to redux
 .
 .
+-> there are two types of selectors in the reselect library namely:
+    -> input selector: follows a naming convention of e.g (selectCart --- 'select...') and takes the whole state but then just returns a slice of it
+    and 
+    -> output selector
+.
+.
 .
 .
 topics to check on:

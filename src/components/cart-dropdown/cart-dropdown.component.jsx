@@ -3,6 +3,7 @@ import "./cart-dropdown.styles.scss";
 import CartButton from "../cart-button/cart-button.component";
 import CartItem from "../cart-item/cart-item.component";
 import { connect } from "react-redux";
+import { selectCartItems } from "../../redux/cart/cart.selectors";
 
 const CartDropdown = ({ cartItems }) => (
   <div className="cart-dropdown">
@@ -15,8 +16,9 @@ const CartDropdown = ({ cartItems }) => (
   </div>
 );
 
-const mapStateToProps = ({ cart: { cartItems } }) => ({
-  cartItems,
+const mapStateToProps = (state) => ({
+  // this 'selectCartItems' ensures that the cart dropdown is not being re-rendered whenever there is an change to the state that is unrelated to the cart dropdown. So when the user signs out or in -- it doesn't change the cart item dropdown or the count which improves performance
+  cartItems: selectCartItems(state),
 });
 
 export default connect(mapStateToProps)(CartDropdown);
