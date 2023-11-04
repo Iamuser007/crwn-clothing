@@ -5,6 +5,9 @@ import { ReactComponent as Logo } from "../../assets/084 crown.svg";
 import { auth } from "../../firebase/firebase.utils";
 import CartIcon from "../cart-icon/cart-icon.component";
 import CartDropdown from "../cart-dropdown/cart-dropdown.component";
+import { createStructuredSelector } from "reselect";
+import { selectCartHidden } from "../../redux/cart/cart.selectors";
+import { selectCurrentUser } from "../../redux/user/user.selectors";
 
 // NOTE // * one connect is caps 'Connect' and the second is lower-case 'connect' so you want to use the lower case in this context
 import { connect } from "react-redux"; //todo Refer to the notes.txt
@@ -42,10 +45,16 @@ const Header = ({ currentUser, hidden }) => (
 
 // * the name can be anything but this name used is common_practice in the redux codebase
 // * the state in the function is the top level root_reducer
-const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({
-  // * from root reducer -> get the user value (from root-reducer.js) -> then get the currentUser(from user.reducer.js)
-  currentUser,
-  hidden,
+// const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({
+// * from root reducer -> get the user value (from root-reducer.js) -> then get the currentUser(from user.reducer.js)
+//   currentUser,
+//   hidden,
+// });
+
+//todo A more efficient way to run the same code that i commented above but this time using the reselect library
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+  hidden: selectCartHidden,
 });
 
 export default connect(mapStateToProps)(Header);

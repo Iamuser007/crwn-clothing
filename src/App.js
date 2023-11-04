@@ -8,7 +8,10 @@ import SignInAndSignUpPage from "./components/pages/sign-in-and-sign-up/sign-in-
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 import { connect } from "react-redux";
 import { setCurrentUser } from "./redux/user.action";
-import { Navigate } from "react-router-dom";
+
+import { selectCurrentUser } from "./redux/user/user.selectors";
+import { createStructuredSelector } from "reselect";
+import CheckoutPage from "./components/pages/checkout/checkout.component";
 
 class App extends Component {
   // ---------------------
@@ -59,6 +62,7 @@ class App extends Component {
           {/** We only get access to the history properties from the first component that gets passed into our routes, so in the case only homepage right now has access to those properties*/}
           <Route exact path="/shop" Component={ShopPage} />
           <Route exact path="/signin" Component={check} />
+          <Route exact path="/checkout" Component={CheckoutPage} />
         </Routes>
       </div>
     );
@@ -68,8 +72,13 @@ class App extends Component {
 // * we will be using the second argument here because the app.js doesn't do anything with the currentUser in this component but just passes it into the header
 
 // * destructuring the user reducer from the state
-const mapStateToProps = ({ user }) => ({
-  currentUser: user.currentUser,
+// const mapStateToProps = ({ user }) => ({
+//   currentUser: user.currentUser,
+// });
+
+//todo A more efficient way to run the code i commented
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
 });
 
 const mapDispatchToProps = (dispatch) => ({
