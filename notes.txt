@@ -43,6 +43,14 @@ before the flux pattern, the MVC was the architectural design in use
 .
 .
 .
+-> stripe dummy card details:
+    4242 4242 4242 4242
+    12/34
+    123
+.
+.
+.
+.
 topics to check on:
 document reference and collection reference in firebase
 prop drilling
