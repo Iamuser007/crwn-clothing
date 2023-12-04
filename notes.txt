@@ -37,6 +37,8 @@ before the flux pattern, the MVC was the architectural design in use
     -> input selector: follows a naming convention of e.g (selectCart --- 'select...') and takes the whole state but then just returns a slice of it
     and 
     -> output selector
+
+-> data normalization means that you store list of data as objects instead of as arrays
 .
 .
 .

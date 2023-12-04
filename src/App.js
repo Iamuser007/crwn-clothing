@@ -60,7 +60,7 @@ class App extends Component {
         <Routes>
           <Route exact path="/" Component={HomePage} />{" "}
           {/** We only get access to the history properties from the first component that gets passed into our routes, so in the case only homepage right now has access to those properties*/}
-          <Route exact path="/shop" Component={ShopPage} />
+          <Route exact path="/shop/*" Component={ShopPage} />
           <Route exact path="/signin" Component={check} />
           <Route exact path="/checkout" Component={CheckoutPage} />
         </Routes>
